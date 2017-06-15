@@ -8,9 +8,10 @@ var MemoryGame = (function() {
       this.cards = [...cards, ...cards].sort(function() { return 0.5 - Math.random() });
       this.container = document.getElementById('cards');
       this.startButton = document.getElementById('startButton');
-      this.counter = document.querySelectorAll('.score .counter');
+      this.counter = document.getElementById('counter');
+      this.maxScore = 12;
 
-      $(MemoryGame.startButton).on('click', function() {
+      this.startButton.addEventListener('click', function(){
         this.classList.add('hidden');
         setup();
       });
@@ -24,8 +25,8 @@ var MemoryGame = (function() {
   }
 
   var addCards = function() {
-    for(let card of MemoryGame.cards) {
-      let cardMarkup = `<article class="card"><p class="hidden">${card}</p></article>`;
+    for(let [index, value] of MemoryGame.cards.entries()) {
+      let cardMarkup = `<a href="#" id="card${index}" class="card"><span class="hidden">${value}</span></a>`;
       MemoryGame.container.innerHTML += cardMarkup;
       MemoryGame.container.classList.remove('hidden');
     }
@@ -40,21 +41,31 @@ var MemoryGame = (function() {
   }
 
   var addEventListeners = function() {
-    let that = this;
+    let that = this,
+    cards = document.querySelectorAll('.card');
 
-    $(document).off().on('click', '.card' , function() {
-      let flippedCards = '';
+    for(let card of cards) {
+      let cardSelector = document.getElementById(card.id);
 
-      toggleClass(this, 'flipped');
-      toggleClass(this.firstChild, 'hidden');
-      flippedCards = document.querySelectorAll('.flipped');
+      cardSelector.addEventListener('click', function(e){
+        e.preventDefault();
+        handleClick(this);
+      });
+    }
+  }
 
-      if (flippedCards.length === 2) {
-        setTimeout(function () {
-          compare(flippedCards[0], flippedCards[1]);
-        }, 500);
-      }
-    });
+  var handleClick = function(card) {
+    let flippedCards = '';
+
+    card.classList.add('flipped');
+    card.firstChild.classList.remove('hidden');
+    flippedCards = document.querySelectorAll('.flipped');
+
+    if (flippedCards.length === 2) {
+      setTimeout(function () {
+        compare(flippedCards[0], flippedCards[1]);
+      }, 500);
+    }
   }
 
   var compare = function(firstCard, lastCard) {
@@ -62,8 +73,8 @@ var MemoryGame = (function() {
       updateMarkup(firstCard);
       updateMarkup(lastCard);
       firstCard.classList.remove('flipped');
-      firstCard.classList.add('invisible');
       lastCard.classList.remove('flipped');
+      firstCard.classList.add('invisible');
       lastCard.classList.add('invisible');
       updateScore();
     } else {
@@ -80,28 +91,17 @@ var MemoryGame = (function() {
   }
 
   var updateScore = function() {
-    let $counter = $(MemoryGame.counter);
+    let currentScore = MemoryGame.counter.value;
+    MemoryGame.counter.value = ++currentScore;
 
-    $counter.val(function(i, oldValue) {
-      return ++oldValue;
-    });
-
-    if ($counter.val() === '12') {
-      $counter.val(0);
+    if (parseInt(MemoryGame.counter.value) === MemoryGame.maxScore) {
       restart();
     }
   }
 
-  var toggleClass = function(el, className) {
-    if (!el.classList.contains(className)) {
-      el.classList.add(className);
-    } else {
-      el.classList.remove(className);
-    }
-  }
-
   var restart = function() {
-    updateMarkup(MemoryGame.startButton, 'RESTART GAME');
+    MemoryGame.counter.setAttribute('value', '0');
+    updateMarkup(MemoryGame.startButton, 'try again');
     updateMarkup(MemoryGame.container, '<div class="centered modal">YOU WON!</div>');
     MemoryGame.startButton.classList.remove('hidden');
   }
