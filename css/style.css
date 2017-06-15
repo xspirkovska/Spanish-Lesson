@@ -88,6 +88,8 @@ input[readonly] {
 
 .card.invisible {
 	background: #fff;
+  pointer-events: none;
+  cursor: default;
 }
 
 .controls {
