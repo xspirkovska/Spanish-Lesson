@@ -1,0 +1,123 @@
+/* Memory Game Styles */
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One');
+
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: 'Comfortaa', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+  font-family: 'Patua One', sans-serif;
+}
+
+input[readonly] {
+		color: tomato;
+		font-weight: bold;
+		width: 3rem;
+		text-align: center;
+}
+.centered {
+    margin: 0 auto;
+    padding: 0 0.2rem;
+}
+
+.modal {
+	padding: 10rem;
+	font-size: 5rem;
+}
+
+.hidden {
+  display: none;
+}
+.title {
+	flex: 0 1 calc(30% - 0.1rem);
+}
+.rules {
+	flex: 0 1 calc(70% - 0.1rem);
+}
+
+.header,
+.cards {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-between;
+	 align-items: flex-start;
+}
+
+.card {
+    background: salmon;
+		color: #fff;
+    flex: 0 1 calc(25% - 0.1rem);
+    font-weight: bold;
+    font-size: 1rem;
+		line-height: 3rem;
+		margin-top: 0.5rem;
+		min-width: 12rem;
+		min-height: 6rem;
+		padding: 0.3rem;
+    text-align: center;
+		text-transform: uppercase;
+}
+
+.card.flipped {
+		background: lightsalmon;
+}
+
+.card.invisible {
+	background: #fff;
+}
+
+.controls {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.start-btn {
+    border-color: coral;
+    background: coral;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+		padding: 0.5rem 1rem;
+		text-align: center;
+}
+
+@media screen and (max-width: 27rem) {
+		.cards {
+		   justify-content: center;
+		}
+
+    .card {
+       max-width: calc(100% -  1rem);
+    }
+
+		.title,
+		.rules {
+			flex: 0 1 100%;
+		}
+}
+
+@media screen and (min-width: 60rem) {
+    .card {
+        max-width: calc(25% - 1rem);
+    }
+}
+
+@media screen and (min-width: 52rem) {
+    .centered {
+        max-width: 52rem;
+    }
+}
