@@ -76,6 +76,8 @@ var MemoryGame = (function() {
       lastCard.classList.remove('flipped');
       firstCard.classList.add('invisible');
       lastCard.classList.add('invisible');
+      firstCard.removeAttribute('href');
+      lastCard.removeAttribute('href');
       updateScore();
     } else {
       firstCard.classList.remove('flipped');
