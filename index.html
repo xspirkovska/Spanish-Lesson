@@ -1,32 +1,31 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-    <head>
-  	   <title>Coding Assignment</title>
-       <meta charset="UTF-8">
-       <meta name="description" content="Coding Assignment">
-       <meta name="keywords" content="HTML,CSS,JavaScript">
-       <meta name="author" content="Nikolina Spirkovska">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header class="header centered">
-            <h1 class="title">Spanish Lesson (Months)</h1>
-            <p class="rules">RULES: Start by flipping two cards. If the words on the cards match, they will disappear. If they don't match, the cards will flip back over.</p>
-        </header>
+<head>
+  <title>Coding Assignment</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Coding Assignment">
+  <meta name="keywords" content="HTML,CSS,JavaScript">
+  <meta name="author" content="Nikolina Spirkovska">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <header class="header centered">
+    <h1 class="title">Spanish Lesson (Months)</h1>
+    <p class="rules">RULES: Start by flipping two cards. If the words on the cards match, they will disappear. If they don't match, the cards will flip back over.</p>
+  </header>
 
-        <main class="centered">
-            <section class="controls">
-                <div class="score">
-                  <label for="counter">Score:</label>
-                  <input class="counter" type="text" name="counter" value="0" readonly>
-                </div>
-                <button id="startButton" class="start-btn">START</button>
-            </section>
+  <main class="centered">
+    <section class="controls">
+      <div class="score bold">
+        <label for="counter">Score:</label>
+        <input id="counter" class="counter" type="text" name="counter" value="0" readonly>
+      </div>
+      <button id="startButton" class="start-btn">Start</button>
+    </section>
 
-            <div id="cards" class="cards hidden"></div>
-        </main>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+    <div id="cards" class="cards hidden"></div>
+  </main>
+  <script src="js/main.js"></script>
+</body>
 </html>
